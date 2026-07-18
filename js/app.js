@@ -249,7 +249,19 @@ function loadState() {
     const storedActivityLog = JSON.parse(localStorage.getItem(STORAGE_KEYS.activityLog) || "null");
     const storedView = localStorage.getItem(STORAGE_KEYS.view);
     state.customers = Array.isArray(storedCustomers) && storedCustomers.length ? storedCustomers : defaultCustomers;
-    state.products = Array.isArray(storedProducts) && storedProducts.length ? storedProducts : defaultProducts;
+    if (Array.isArray(storedProducts) && storedProducts.length) {
+    state.products = storedProducts;
+} else {
+    fetch("./data/beko.json")
+        .then(r => r.json())
+        .then(data => {
+            state.products = data;
+            saveState();
+            renderProducts();
+        });
+
+    state.products = [];
+}
     state.quotes = Array.isArray(storedQuotes) ? storedQuotes : [];
     state.activityLog = Array.isArray(storedActivityLog) ? storedActivityLog : [];
     state.activeView = storedView || "dashboard";
