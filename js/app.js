@@ -260,7 +260,17 @@ function loadState() {
             renderProducts();
         });
 
-    state.products = [];
+    if (Array.isArray(storedProducts) && storedProducts.length) {
+    state.products = storedProducts;
+} else {
+    fetch("./data/beko.json")
+        .then(r => r.json())
+        .then(data => {
+            state.products = data;
+            saveState();
+            renderProducts();
+        });
+}
 }
     state.quotes = Array.isArray(storedQuotes) ? storedQuotes : [];
     state.activityLog = Array.isArray(storedActivityLog) ? storedActivityLog : [];
