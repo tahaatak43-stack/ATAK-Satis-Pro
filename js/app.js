@@ -23,11 +23,7 @@ const defaultCustomers = [
   { id: crypto.randomUUID(), name: "Elif Demir", company: "Nord Medya", phone: "0533 444 22 11", email: "elif@nordmedya.com", city: "Ankara", note: "Yazılım satışı hedefleniyor" }
 ];
 
-const defaultProducts = [
-  { id: crypto.randomUUID(), name: "Kurumsal Paket", code: "PKT-001", category: "Yazılım", price: 15000, stock: 24, unit: "adet" },
-  { id: crypto.randomUUID(), name: "Destek Anlaşması", code: "DST-002", category: "Hizmet", price: 7500, stock: 12, unit: "ay" },
-  { id: crypto.randomUUID(), name: "Analitik Platform", code: "ANL-003", category: "SaaS", price: 22000, stock: 48, unit: "lisans" }
-];
+const defaultProducts = [];
 
 const elements = {
   navItems: Array.from(document.querySelectorAll(".nav-item")),
