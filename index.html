@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c2d5b" />
+    <meta name="description" content="ATAK Ev Gereçleri Paz. Tic. Ltd. Şti. - kurumsal satış, müşteri ve teklif yönetimi uygulaması" />
+    <title>ATAK Ev Gereçleri Paz. Tic. Ltd. Şti.</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-label="Şirket logosu">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <rect x="10" y="10" width="44" height="44" rx="12" />
+              <path d="M20 32h24M32 20v24" />
+              <path d="M24 24h16v16H24z" fill="none" />
+            </svg>
+          </div>
+          <div>
+            <h2>ATAK Ev Gereçleri Paz. Tic. Ltd. Şti.</h2>
+            <p>Kurumsal satış sistemi</p>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Ana menü">
+          <button class="nav-item active" data-view="dashboard" type="button">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4v-5H9v5H5a1 1 0 0 1-1-1z" /></svg>
+            </span>
+            <span>Gösterge Paneli</span>
+          </button>
+          <button class="nav-item" data-view="customers" type="button">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 2a3 3 0 1 0-3-3 3 3 0 0 0 3 3Zm0 2c-2.67 0-8 1.34-8 4v1h10v-1c0-2.66-5.33-4-8-4Zm8 0c-.29 0-.62.02-.97.05A5.01 5.01 0 0 1 20 20v1h4v-1c0-2.66-5.33-4-8-4Z" /></svg>
+            </span>
+            <span>Müşteriler</span>
+          </button>
+          <button class="nav-item" data-view="products" type="button">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v4H4zM4 11h16v8H4z" /></svg>
+            </span>
+            <span>Ürünler</span>
+          </button>
+          <button class="nav-item" data-view="quotes" type="button">
+            <span class="icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h10a2 2 0 0 1 2 2v14l-3-2-2 2-2-2-2 2-3-2V5a2 2 0 0 1 2-2Z" /></svg>
+            </span>
+            <span>Teklifler</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="pill">PWA Hazır</div>
+          <p>Teklif kaydetme, paylaşma ve yazdırma işlemleri aktif.</p>
+        </div>
+      </aside>
+
+      <div class="content-area">
+        <header class="topbar">
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menüyü aç/kapat">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="search-pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14Zm8 12 3 3" /></svg>
+            <input id="globalSearch" type="search" placeholder="Arama yapın..." />
+          </div>
+          <div class="topbar-actions">
+            <div class="chip clock-chip" id="liveClock">Yükleniyor...</div>
+            <div class="chip">TR</div>
+            <div class="chip accent">Güncel</div>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <section id="dashboardView" class="view active">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Genel Bakış</p>
+                <h1>Profesyonel satış görünümü</h1>
+              </div>
+              <div class="pill accent">LocalStorage aktif</div>
+            </div>
+
+            <div class="stats-grid">
+              <article class="glass-card metric-card">
+                <div class="metric-label">Bugünkü Satış</div>
+                <div class="metric-value" id="todaySalesValue">₺0</div>
+              </article>
+              <article class="glass-card metric-card">
+                <div class="metric-label">Aylık Satış</div>
+                <div class="metric-value" id="monthlySalesValue">₺0</div>
+              </article>
+              <article class="glass-card metric-card">
+                <div class="metric-label">Toplam Müşteri</div>
+                <div class="metric-value" id="customerCount">0</div>
+              </article>
+              <article class="glass-card metric-card">
+                <div class="metric-label">Toplam Ürün</div>
+                <div class="metric-value" id="productCount">0</div>
+              </article>
+              <article class="glass-card metric-card">
+                <div class="metric-label">Toplam Teklif</div>
+                <div class="metric-value" id="quoteCount">0</div>
+              </article>
+              <article class="glass-card metric-card">
+                <div class="metric-label">Toplam Gelir</div>
+                <div class="metric-value" id="revenueValue">₺0</div>
+              </article>
+            </div>
+
+            <div class="dashboard-grid">
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Son 10 işlem</h3>
+                  <span class="pill">Canlı</span>
+                </div>
+                <ul class="activity-list" id="recentActivityList"></ul>
+              </article>
+              <article class="glass-card chart-card">
+                <div class="card-header">
+                  <h3>Aylık satış grafiği</h3>
+                  <span class="pill muted">Chart.js</span>
+                </div>
+                <div class="chart-wrap">
+                  <canvas id="salesChart"></canvas>
+                </div>
+              </article>
+            </div>
+
+            <div class="dashboard-grid secondary-grid">
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Son eklenen müşteriler</h3>
+                  <span class="pill">CRM</span>
+                </div>
+                <ul class="activity-list" id="newCustomersList"></ul>
+              </article>
+              <article class="glass-card warning-card">
+                <div class="card-header">
+                  <h3>Düşük stok uyarısı</h3>
+                  <span class="pill danger">Kritik</span>
+                </div>
+                <ul class="activity-list" id="lowStockList"></ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="customersView" class="view">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">CRM</p>
+                <h1>Müşteri yönetimi</h1>
+              </div>
+              <button class="ghost-btn" id="clearCustomerFormBtn" type="button">Temizle</button>
+            </div>
+
+            <div class="module-grid">
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Müşteri kayıt</h3>
+                  <span class="pill">Detaylı</span>
+                </div>
+                <form id="customerForm" class="stack-form">
+                  <input type="hidden" id="customerId" />
+                  <label>
+                    Firma adı
+                    <input type="text" id="customerCompany" required placeholder="Ör. ATAK Teknoloji" />
+                  </label>
+                  <label>
+                    Yetkili kişi
+                    <input type="text" id="customerName" required placeholder="Ör. Ahmet Yılmaz" />
+                  </label>
+                  <label>
+                    Telefon
+                    <input type="tel" id="customerPhone" required placeholder="0555 123 45 67" />
+                  </label>
+                  <label>
+                    WhatsApp
+                    <input type="tel" id="customerWhatsapp" placeholder="0555 123 45 67" />
+                  </label>
+                  <label>
+                    E-posta
+                    <input type="email" id="customerEmail" required placeholder="musteri@firma.com" />
+                  </label>
+                  <label>
+                    Vergi dairesi
+                    <input type="text" id="customerTaxOffice" placeholder="İstanbul" />
+                  </label>
+                  <label>
+                    Vergi no
+                    <input type="text" id="customerTaxNumber" placeholder="1234567890" />
+                  </label>
+                  <label>
+                    Adres
+                    <textarea id="customerAddress" rows="2" required placeholder="Tam adres bilgisi"></textarea>
+                  </label>
+                  <label>
+                    İl
+                    <input type="text" id="customerCity" required placeholder="İstanbul" />
+                  </label>
+                  <label>
+                    İlçe
+                    <input type="text" id="customerDistrict" required placeholder="Beşiktaş" />
+                  </label>
+                  <label>
+                    Notlar
+                    <textarea id="customerNote" rows="3" placeholder="Müşteri ile ilgili önemli not..."></textarea>
+                  </label>
+                  <div class="button-row">
+                    <button type="submit">Kaydet</button>
+                    <button class="secondary" type="button" id="cancelCustomerBtn">İptal</button>
+                  </div>
+                </form>
+              </article>
+
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Müşteri listesi</h3>
+                  <span class="pill">Sıralı</span>
+                </div>
+                <div class="customer-toolbar">
+                  <input type="search" id="customerSearchInput" placeholder="Müşteri ara..." />
+                  <div class="customer-view-toggle" role="group" aria-label="Müşteri görünümü">
+                    <button class="ghost-btn active" id="customerTableViewBtn" data-mode="table" type="button">Tablo</button>
+                    <button class="ghost-btn" id="customerCardViewBtn" data-mode="cards" type="button">Kart</button>
+                  </div>
+                </div>
+                <div id="customerTableWrap" class="customer-list-view active">
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Firma</th>
+                          <th>Yetkili</th>
+                          <th>Telefon</th>
+                          <th>E-posta</th>
+                          <th>İl/İlçe</th>
+                          <th>İşlem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="customerTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="customerCardsWrap" class="customer-list-view">
+                  <div id="customerCardsBody" class="customer-cards"></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section id="productsView" class="view">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Inventory</p>
+                <h1>Ürün yönetimi</h1>
+              </div>
+              <button class="ghost-btn" id="clearProductFormBtn" type="button">Temizle</button>
+            </div>
+
+            <div class="module-grid">
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Ürün kayıt</h3>
+                  <span class="pill">Katalog</span>
+                </div>
+                <form id="productForm" class="stack-form">
+                  <input type="hidden" id="productId" />
+                  <label>
+                    Ürün Kodu
+                    <input type="text" id="productCode" placeholder="PKT-001" />
+                  </label>
+                  <label>
+                    Barkod
+                    <input type="text" id="productBarcode" placeholder="8691234567890" />
+                  </label>
+                  <label>
+                    Ürün Adı
+                    <input type="text" id="productName" required placeholder="Ör. Kurumsal Paket" />
+                  </label>
+                  <label>
+                    Marka
+                    <input type="text" id="productBrand" placeholder="ATAK" />
+                  </label>
+                  <label>
+                    Kategori
+                    <input type="text" id="productCategory" placeholder="Yazılım" />
+                  </label>
+                  <label>
+                    Alt Kategori
+                    <input type="text" id="productSubCategory" placeholder="Kurumsal" />
+                  </label>
+                  <label>
+                    Alış Fiyatı (₺)
+                    <input type="number" id="productCostPrice" min="0" step="0.01" placeholder="12000" />
+                  </label>
+                  <label>
+                    Liste Fiyatı (₺)
+                    <input type="number" id="productListPrice" min="0" step="0.01" placeholder="15000" />
+                  </label>
+                  <label>
+                    Satış Fiyatı (₺)
+                    <input type="number" id="productSalePrice" required min="0" step="0.01" placeholder="15000" />
+                  </label>
+                  <label>
+                    KDV %
+                    <input type="number" id="productVatRate" min="0" max="100" step="1" placeholder="20" />
+                  </label>
+                  <label>
+                    Stok
+                    <input type="number" id="productStock" min="0" step="1" placeholder="50" />
+                  </label>
+                  <label>
+                    Birim
+                    <input type="text" id="productUnit" placeholder="adet" />
+                  </label>
+                  <label>
+                    Açıklama
+                    <textarea id="productDescription" rows="3" placeholder="Ürün açıklaması..."></textarea>
+                  </label>
+                  <label>
+                    Ürün Resmi
+                    <input type="file" id="productImageInput" accept="image/*" />
+                  </label>
+                  <div id="productImagePreview" class="image-preview"></div>
+                  <div class="button-row">
+                    <button type="submit">Kaydet</button>
+                    <button class="secondary" type="button" id="cancelProductBtn">İptal</button>
+                  </div>
+                </form>
+              </article>
+
+              <article class="glass-card">
+                <div class="card-header">
+                  <h3>Ürün listesi</h3>
+                  <span class="pill">Stok takibi</span>
+                </div>
+                <div class="product-toolbar">
+                  <input type="search" id="productSearchInput" placeholder="Ürün ara..." />
+                  <div class="product-toolbar-filters">
+                    <select id="productBrandFilter">
+                      <option value="">Tüm markalar</option>
+                    </select>
+                    <select id="productCategoryFilter">
+                      <option value="">Tüm kategoriler</option>
+                    </select>
+                    <select id="productStockFilter">
+                      <option value="">Tüm stoklar</option>
+                      <option value="low">Stok 5 altı</option>
+                      <option value="out">Stok yok</option>
+                    </select>
+                    <select id="productPriceFilter">
+                      <option value="">Tüm fiyatlar</option>
+                      <option value="under10k">0 - 10.000</option>
+                      <option value="10k-20k">10.000 - 20.000</option>
+                      <option value="over20k">20.000 +</option>
+                    </select>
+                  </div>
+                  <div class="customer-view-toggle" role="group" aria-label="Ürün görünümü">
+                    <button class="ghost-btn active" id="productTableViewBtn" data-mode="table" type="button">Tablo</button>
+                    <button class="ghost-btn" id="productCardViewBtn" data-mode="cards" type="button">Kart</button>
+                  </div>
+                  <div class="button-row compact">
+                    <button class="secondary" id="deleteSelectedProductsBtn" type="button">Seçilenleri Sil</button>
+                  </div>
+                </div>
+                <div id="productTableWrap" class="customer-list-view active">
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th><input type="checkbox" id="selectAllProducts" /></th>
+                          <th>Ürün</th>
+                          <th>Marka</th>
+                          <th>Kategori</th>
+                          <th>Fiyat</th>
+                          <th>Stok</th>
+                          <th>İşlem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="productTableBody"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="productCardsWrap" class="customer-list-view">
+                  <div id="productCardsBody" class="customer-cards"></div>
+                </div>
+                <div class="product-pagination" id="productPagination"></div>
+              </article>
+            </div>
+          </section>
+
+          <section id="quotesView" class="view">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Teklif</p>
+                <h1>Profesyonel teklif oluştur</h1>
+              </div>
+              <div class="pill accent">Kaydetme ve paylaşma aktif</div>
+            </div>
+
+            <div class="quote-module-shell">
+              <div class="quote-tabs" role="tablist" aria-label="Teklif modülü">
+                <button class="quote-tab active" data-quote-tab="new" type="button">Yeni Teklif</button>
+                <button class="quote-tab" data-quote-tab="list" type="button">Teklif Listesi</button>
+                <button class="quote-tab" data-quote-tab="detail" type="button">Teklif Detayı</button>
+                <button class="quote-tab" data-quote-tab="history" type="button">Teklif Geçmişi</button>
+              </div>
+
+              <div class="quote-panel active" data-quote-panel="new">
+                <div class="module-grid">
+                  <article class="glass-card">
+                    <div class="card-header">
+                      <h3>Teklif formu</h3>
+                      <span class="pill">Kurumsal</span>
+                    </div>
+                    <form id="quoteForm" class="stack-form">
+                      <div class="quote-meta-grid">
+                        <label>
+                          Teklif No
+                          <input id="quoteNumber" type="text" readonly />
+                        </label>
+                        <label>
+                          Teklif Tarihi
+                          <input id="quoteDate" type="date" />
+                        </label>
+                        <label>
+                          Geçerlilik Tarihi
+                          <input id="quoteValidityDate" type="date" />
+                        </label>
+                        <label>
+                          Durum
+                          <select id="quoteStatus">
+                            <option value="Taslak">Taslak</option>
+                            <option value="Beklemede">Beklemede</option>
+                            <option value="Onaylandı">Onaylandı</option>
+                            <option value="Reddedildi">Reddedildi</option>
+                          </select>
+                        </label>
+                      </div>
+                      <div class="quote-meta-grid">
+                        <label>
+                          Satış Danışmanı
+                          <input id="quoteSalesperson" type="text" placeholder="Ahmet Yılmaz" />
+                        </label>
+                        <label>
+                          Müşteri
+                          <input id="quoteCustomerSearch" type="search" placeholder="Müşteri ara..." />
+                        </label>
+                        <label>
+                          Müşteri Seçimi
+                          <select id="quoteCustomerSelect"></select>
+                        </label>
+                        <label>
+                          Döviz
+                          <select id="quoteCurrency">
+                            <option value="TL">TL</option>
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                          </select>
+                        </label>
+                      </div>
+                      <label>
+                        Telefon
+                        <input id="quotePhone" type="tel" placeholder="0555 123 45 67" />
+                      </label>
+                      <label>
+                        Adres
+                        <textarea id="quoteAddress" rows="2" placeholder="Teslim / iletişim adresi"></textarea>
+                      </label>
+                      <div class="quote-meta-grid">
+                        <label>
+                          Hızlı ürün arama
+                          <input id="quoteProductSearch" type="search" placeholder="Ürün adı / kod / barkod..." />
+                        </label>
+                        <label>
+                          Ürün seç
+                          <select id="quoteProductSelect"></select>
+                        </label>
+                      </div>
+                      <div id="quoteSearchResults" class="quote-search-results"></div>
+                      <div class="quote-preview-grid">
+                        <div id="quoteProductPreview" class="quote-product-preview">Ürün resmi burada görünür.</div>
+                        <div class="stack-form compact">
+                          <label>
+                            Ürün Kodu
+                            <input id="quoteProductCode" type="text" readonly />
+                          </label>
+                          <label>
+                            Barkod
+                            <input id="quoteProductBarcode" type="text" readonly />
+                          </label>
+                          <label>
+                            Açıklama
+                            <textarea id="quoteProductDescription" rows="3" readonly></textarea>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="button-row">
+                        <button type="button" id="addQuoteProductBtn">Ürünü listeye ekle</button>
+                      </div>
+                      <label>
+                        KDV (%)
+                        <input id="quoteVatRate" type="number" min="0" max="100" value="20" />
+                      </label>
+                      <div id="quoteItemsList" class="quote-items-list"></div>
+                      <div class="quote-summary-card">
+                        <div class="quote-summary-row"><span>Ara toplam</span><strong id="quoteSubtotalValue">₺0</strong></div>
+                        <div class="quote-summary-row"><span>KDV</span><strong id="quoteVatValue">₺0</strong></div>
+                        <div class="quote-summary-row total"><span>Genel toplam</span><strong id="quoteGrandTotal">₺0</strong></div>
+                      </div>
+                      <div class="quote-meta-grid">
+                        <label>
+                          Notlar
+                          <textarea id="quoteNotes" rows="3" placeholder="İşlem notları"></textarea>
+                        </label>
+                        <label>
+                          Teslimat süresi
+                          <input id="quoteDeliveryTime" type="text" placeholder="3 iş günü" />
+                        </label>
+                        <label>
+                          Ödeme şekli
+                          <input id="quotePaymentMethod" type="text" placeholder="Nakit / Havale" />
+                        </label>
+                        <label>
+                          Garanti bilgisi
+                          <input id="quoteWarranty" type="text" placeholder="2 yıl" />
+                        </label>
+                      </div>
+                      <label>
+                        Montaj bilgisi
+                        <textarea id="quoteAssembly" rows="2" placeholder="Montaj gereksinimleri"></textarea>
+                      </label>
+                      <label>
+                        Açıklamalar
+                        <textarea id="quoteComments" rows="2" placeholder="Ek açıklamalar"></textarea>
+                      </label>
+                      <div class="button-row">
+                        <button type="button" id="saveQuoteBtn">Kaydet</button>
+                        <button class="secondary" type="button" id="saveDraftQuoteBtn">Taslak Kaydet</button>
+                        <button class="secondary" type="button" id="duplicateQuoteBtn">Kopyala</button>
+                        <button class="secondary" type="button" id="generatePdfBtn">PDF</button>
+                        <button class="secondary" type="button" id="emailBtn">E-posta</button>
+                        <button class="secondary" type="button" id="whatsappBtn">WhatsApp</button>
+                        <button class="secondary" type="button" id="printBtn">Yazdır</button>
+                        <button class="secondary" type="button" id="clearQuoteBtn">Temizle</button>
+                      </div>
+                    </form>
+                  </article>
+                </div>
+              </div>
+
+              <div class="quote-panel" data-quote-panel="list">
+                <article class="glass-card">
+                  <div class="card-header">
+                    <h3>Teklif listesi</h3>
+                    <span class="pill">LocalStorage</span>
+                  </div>
+                  <div class="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>No</th>
+                          <th>Müşteri</th>
+                          <th>Toplam</th>
+                          <th>Tarih</th>
+                          <th>Durum</th>
+                          <th>İşlem</th>
+                        </tr>
+                      </thead>
+                      <tbody id="quoteHistoryList"></tbody>
+                    </table>
+                  </div>
+                </article>
+              </div>
+
+              <div class="quote-panel" data-quote-panel="detail">
+                <article class="glass-card">
+                  <div class="card-header">
+                    <h3>Teklif detayı</h3>
+                    <span class="pill">Seçili teklif</span>
+                  </div>
+                  <div id="quoteDetailCard" class="quote-detail-card"></div>
+                </article>
+              </div>
+
+              <div class="quote-panel" data-quote-panel="history">
+                <article class="glass-card">
+                  <div class="card-header">
+                    <h3>Teklif geçmişi</h3>
+                    <span class="pill">Süreç takibi</span>
+                  </div>
+                  <div id="quoteHistoryTimeline" class="quote-history-timeline"></div>
+                </article>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

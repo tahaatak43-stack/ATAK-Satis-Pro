@@ -1,0 +1,6 @@
+[
+  { "urunId": "beko-001", "stok": 12, "konum": "Depo A" },
+  { "urunId": "beko-002", "stok": 8, "konum": "Depo B" },
+  { "urunId": "istikbal-001", "stok": 5, "konum": "Depo C" },
+  { "urunId": "istikbal-002", "stok": 10, "konum": "Depo D" }
+]

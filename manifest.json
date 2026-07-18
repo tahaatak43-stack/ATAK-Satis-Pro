@@ -1,0 +1,11 @@
+{
+  "name": "ATAK Sales Pro",
+  "short_name": "ATAK Sales",
+  "description": "Kurumsal Türkçe satış ve müşteri yönetimi uygulaması",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#07111f",
+  "orientation": "portrait",
+  "icons": []
+}

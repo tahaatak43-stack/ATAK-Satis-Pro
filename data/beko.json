@@ -1,0 +1,22 @@
+[
+  {
+    "id": "beko-001",
+    "marka": "Beko",
+    "urun": "Beko 8 kg Çamaşır Makinesi",
+    "kategori": "Beyaz Eşya",
+    "fiyat": 18999,
+    "stok": 12,
+    "kampanya": true,
+    "aciklama": "Enerji sınıfı A+++"
+  },
+  {
+    "id": "beko-002",
+    "marka": "Beko",
+    "urun": "Beko 60 cm Buzdolabı",
+    "kategori": "Beyaz Eşya",
+    "fiyat": 23999,
+    "stok": 8,
+    "kampanya": false,
+    "aciklama": "No Frost teknolojisi"
+  }
+]

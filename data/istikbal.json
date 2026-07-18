@@ -1,0 +1,22 @@
+[
+  {
+    "id": "istikbal-001",
+    "marka": "İstikbal",
+    "urun": "İstikbal 3+1 Koltuk Takımı",
+    "kategori": "Mobilya",
+    "fiyat": 32999,
+    "stok": 5,
+    "kampanya": true,
+    "aciklama": "Özel kumaş kaplama"
+  },
+  {
+    "id": "istikbal-002",
+    "marka": "İstikbal",
+    "urun": "İstikbal TV Üniteleri",
+    "kategori": "Mobilya",
+    "fiyat": 14999,
+    "stok": 10,
+    "kampanya": false,
+    "aciklama": "Modern tasarım"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "kamp-01",
+    "baslik": "Haftalık İndirim",
+    "aciklama": "Beko ürünlerinde %10 indirim",
+    "aktif": true,
+    "baslangic": "2026-07-01",
+    "bitis": "2026-07-31"
+  },
+  {
+    "id": "kamp-02",
+    "baslik": "Yaz Kampanyası",
+    "aciklama": "İstikbal mobilya ürünlerinde ücretsiz teslimat",
+    "aktif": true,
+    "baslangic": "2026-06-15",
+    "bitis": "2026-08-15"
+  }
+]
